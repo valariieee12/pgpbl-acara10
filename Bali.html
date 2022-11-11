@@ -44,7 +44,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fas fa-globe-asia"></i> Bandung</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-globe-asia"></i>  Bali</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -56,6 +56,7 @@
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#infoModal"><i
                                 class="fas fa-info-circle"></i> Info</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -84,7 +85,7 @@
 
     <script>
         /* Initial Map */
-        var map = L.map("map").setView([-6.230770385032808, 106.84462420023952], 10);
+        var map = L.map("map").setView([-8.388905835509586, 115.18418690595188], 15);
 
         /* Tile Basemap */
         var basemap = L.tileLayer(
@@ -94,25 +95,6 @@
         );
         basemap.addTo(map);
 
-        /* GeoJSON Point */
-        var point = L.geoJson(null, {
-            onEachFeature: function(feature, layer) {
-                var popupContent = "Nama: " + feature.properties.nama + "<br>" +
-                    "Deskripsi: " + feature.properties.deskripsi;
-                layer.on({
-                    click: function(e) {
-                        point.bindPopup(popupContent);
-                    },
-                    mouseover: function(e) {
-                        point.bindTooltip(feature.properties.nama);
-                    },
-                });
-            },
-        });
-        $.getJSON("http://localhost/pgwl/petalokasiobjek/public/Api/", function(data) {
-            point.addData(data);
-            map.addLayer(point);
-        });
     </script>
 </body>
 

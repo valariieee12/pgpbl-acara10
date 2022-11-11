@@ -56,6 +56,7 @@
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#infoModal"><i
                                 class="fas fa-info-circle"></i> Info</a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -84,35 +85,16 @@
 
     <script>
         /* Initial Map */
-        var map = L.map("map").setView([-6.230770385032808, 106.84462420023952], 10);
+        var map = L.map("map").setView([-6.914744, 107.609810], 15);
 
         /* Tile Basemap */
         var basemap = L.tileLayer(
             "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://www.unsorry.net" target="_blank">unsorry@2022</a>',
-            }
+            attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://www.unsorry.net" target="_blank">unsorry@2022</a>',
+        }
         );
         basemap.addTo(map);
 
-        /* GeoJSON Point */
-        var point = L.geoJson(null, {
-            onEachFeature: function(feature, layer) {
-                var popupContent = "Nama: " + feature.properties.nama + "<br>" +
-                    "Deskripsi: " + feature.properties.deskripsi;
-                layer.on({
-                    click: function(e) {
-                        point.bindPopup(popupContent);
-                    },
-                    mouseover: function(e) {
-                        point.bindTooltip(feature.properties.nama);
-                    },
-                });
-            },
-        });
-        $.getJSON("http://localhost/pgwl/petalokasiobjek/public/Api/", function(data) {
-            point.addData(data);
-            map.addLayer(point);
-        });
     </script>
 </body>
 
